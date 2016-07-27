@@ -1,0 +1,15 @@
+#KH: kuka.home 
+#KV-XX : kuka.set_vel(XX)
+#[]:
+#GO: gripper.open
+#GC: griper.close
+#RS-XX: rospy.sleep(XX)
+
+
+KH
+KV-
+[]
+GC
+GO
+fin
+
