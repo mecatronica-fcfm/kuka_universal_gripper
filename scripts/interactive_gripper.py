@@ -10,7 +10,7 @@ Interactive markers for control gripper
 import rospy
 from kuka_interface.marker import MarkerServer, OptionMarker, OptionMenu
 from kuka_interface.interactive import KukaMarkerBaseController
-
+from kuka_interface.commander import CommanderBase, Commander
 # Gripper
 from kuka_universal_gripper.gripper_interface import Gripper
 
@@ -54,10 +54,19 @@ class KukaGripperBaseController(KukaMarkerBaseController):
     def gripper_open(self, feedback):
         self.gripper.open()
 
+class KukaGripperController(KukaGripperBaseController):
+    def __init__(self):
+        super(KukaGripperController, self).__init__()
+        self.kuka_cmd = Commander()
+        
+    def ptp(self, feedback):
+        print('PTP')
+        self.kuka_cmd.ptp(self._joint_states.position)
+
 def main():
     rospy.init_node('marker_test')
     rospy.loginfo('Init marker_test')
-    kuka_marker = KukaGripperBaseController()
+    kuka_marker = KukaGripperController()
     rospy.spin()
 
 if __name__ == "__main__":

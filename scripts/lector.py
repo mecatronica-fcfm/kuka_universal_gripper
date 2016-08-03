@@ -20,7 +20,7 @@ def main():
 	Rutina=open(NombreRutina + ".txt","r")
 
 	for orden in Rutina:
-		if orden[0]=="F":
+		if orden[0:3]=="fin":
 			break
 
 		if orden[0:2]=="KH":
@@ -29,28 +29,28 @@ def main():
 
 		if orden[0:2]=="KV":
 			kuka.set_vel(int(orden[3:5]))
-			rospy.loginfo("Velocidad Kuka : " + oden[3:5])
+			rospy.loginfo("Velocidad Kuka : " + orden[3:5])
 			rospy.sleep(1.0)
 
 		if orden[0]=="#":
 			pass
 
-		if orden[0:2]=="GO":
+		if orden[0:4]=="open":
 			gripper.open()
 			rospy.loginfo("Gripper Open")
 			rospy.sleep(3.0)
 
-		if orden[0:2]=="GC":
+		if orden[0:5]=="close":
 			gripper.close()
 			rospy.loginfo("Gripper Close")
 			rospy.sleep(1.0)
 
 
-		if orden[0:2]=="RS":
-			rospy.sleep(float(orden[3:(len(orden))]))
+		if orden[0:5]=="sleep":
+			rospy.sleep(float(orden[6:(len(orden))]))
 
-		if orden[0]=="[":
-			punto=map(float,orden[1:len(orden)-2].split( ','))
+		if orden[0:3]=="ptp":
+			punto=map(float,orden[5:len(orden)-2].split( ','))
 			kuka.ptp(punto)
 			rospy.sleep(1.0)
 		else:
