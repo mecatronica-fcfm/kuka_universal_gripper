@@ -15,7 +15,6 @@ from kuka_interface.interactive import KukaMarkerBaseController
 from kuka_universal_gripper.gripper_interface import Gripper
 
 
-#en algun lugar añadir gripper.start
 
 class KukaGripperBaseController(KukaMarkerBaseController):
     def __init__(self):
@@ -54,7 +53,6 @@ class KukaGripperBaseController(KukaMarkerBaseController):
 
     def gripper_open(self, feedback):
         self.gripper.open()
-
 
 def main():
     rospy.init_node('marker_test')

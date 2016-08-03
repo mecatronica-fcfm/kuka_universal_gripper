@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import rospy
 from kuka_driver.kuka_commander import KukaCommander
-from kuka_universal_gripper.gripper_interface  import Gripper
+from kuka_universal_gripper.gripper_interface import Gripper
 
 def main():
-	
-	kuka = KukaCommander()  
-	kuka.set_vel(60)
-	kuka.home()
+	rospy.init_node('gripper')
+	#kuka = KukaCommander()  
+	#kuka.set_vel(60)
+	#kuka.home()
 
 	rate = rospy.Rate(1) # 1hz
 	gripper= Gripper()
@@ -17,45 +17,52 @@ def main():
 
 	print(" Realizando Rutina: "+ NombreRutina)
 	
-	Rutina=open(NombreRutina + ".txt","r")
+	Rutina=open(NombreRutina+".txt","r")
 
 	for orden in Rutina:
 		if orden[0]=="F":
+			rospy.loginfo("fin")
+			print("fin")
+
 			break
 
 		if orden[0:2]=="KH":
-			kuka.home()
-			rospy.sleep(3.0)
-
-		if orden[0:2]=="KV":
-			kuka.set_vel(int(orden[3:5]))
-			rospy.loginfo("Velocidad Kuka : " + oden[3:5])
+			#kuka.home()
+			rospy.sleep(0.5)
+			rospy.loginfo("Kuka Home")
 			rospy.sleep(1.0)
 
+		if orden[0:2]=="KV":
+			#kuka.set_vel(int(orden[3:5]))
+			rospy.loginfo("vel:"+ orden[3:5])
+			rospy.sleep(0.5)
+
 		if orden[0]=="#":
+			print(orden)
 			pass
 
 		if orden[0:2]=="GO":
 			gripper.open()
-			rospy.loginfo("Gripper Open")
-			rospy.sleep(3.0)
+			rospy.loginfo("go")
+			rospy.sleep(2.0)
 
 		if orden[0:2]=="GC":
 			gripper.close()
-			rospy.loginfo("Gripper Close")
-			rospy.sleep(1.0)
-
+			rospy.loginfo("gc")
+			rospy.sleep(2.0)
 
 		if orden[0:2]=="RS":
-			rospy.sleep(float(orden[3:(len(orden))]))
+			#rospy.sleep(float(orden[3:(len(orden))]))
+			print("sleep"+ orden[3:(len(orden))])
 
 		if orden[0]=="[":
 			punto=map(float,orden[1:len(orden)-2].split( ','))
-			kuka.ptp(punto)
-			rospy.sleep(1.0)
+			rospy.loginfo("kuka.ptp("+str(punto)+")")
+			rospy.sleep(0.5)
 		else:
 			pass
 
+	print("rutina finalizada")
 	Rutina.close()
 	gripper.shutdown()
 

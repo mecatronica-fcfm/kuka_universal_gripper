@@ -5,11 +5,12 @@
 #GC: griper.close
 #RS-XX: rospy.sleep(XX)
 
-
 KH
-KV-
-[]
+KV-12
+[132,1514,12312,124124,1412,12431]
 GC
 GO
-fin
-
+RS-123
+RS-1
+RS-123123123
+Fin
