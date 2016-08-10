@@ -4,9 +4,9 @@ from kuka_driver.kuka_commander import KukaCommander
 from kuka_universal_gripper.gripper_interface  import Gripper
 
 def main():
-	
+	rospy.init_node('asdasd')
 	kuka = KukaCommander()  
-	kuka.set_vel(60)
+	kuka.set_vel(40)
 	kuka.home()
 
 	rate = rospy.Rate(1) # 1hz
@@ -21,6 +21,7 @@ def main():
 
 	for orden in Rutina:
 		if orden[0:3]=="fin":
+			rospy.loginfo("Fin de la Rutina")
 			break
 
 		if orden[0:2]=="KH":
@@ -38,20 +39,21 @@ def main():
 		if orden[0:4]=="open":
 			gripper.open()
 			rospy.loginfo("Gripper Open")
-			rospy.sleep(3.0)
 
 		if orden[0:5]=="close":
 			gripper.close()
 			rospy.loginfo("Gripper Close")
-			rospy.sleep(1.0)
 
 
 		if orden[0:5]=="sleep":
+			rospy.loginfo("sleep:"+ str(orden[6:(len(orden))]))
 			rospy.sleep(float(orden[6:(len(orden))]))
 
+
 		if orden[0:3]=="ptp":
-			punto=map(float,orden[5:len(orden)-2].split( ','))
+			punto=map(float,orden[4:len(orden)-2].split( ','))
 			kuka.ptp(punto)
+			rospy.loginfo("kuka.ptp("+str(punto)+")")
 			rospy.sleep(1.0)
 		else:
 			pass

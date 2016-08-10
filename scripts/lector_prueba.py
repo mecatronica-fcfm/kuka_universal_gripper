@@ -20,7 +20,7 @@ def main():
 	Rutina=open(NombreRutina+".txt","r")
 	for orden in Rutina:
 		if orden[0:3]=="fin":
-			print("fin")
+			rospy.loginfo("Fin de la Rutina")
 			break
 
 		if orden[0:2]=="KH":
@@ -51,7 +51,7 @@ def main():
 			print("sleep:"+ str(orden[6:(len(orden))]))
 
 		if orden[0:3]=="ptp":
-			punto=map(float,orden[5:len(orden)-2].split( ','))
+			punto=map(float,orden[4:len(orden)-2].split( ','))
 			print("kuka.ptp(punto)"+str(punto))
 			rospy.sleep(1.0)
 		else:

@@ -23,7 +23,7 @@
 	<!-- TF for shadow/base_link -->
 	<node pkg="tf" type="static_transform_publisher" name="shadow_base_tfb" args="0 0 0 0 0 0 shadow/base_link base_link 100"/>
 
-	<node name="rosserial_gripper" pkg="rosserial_python" type="serial_node.py" respawn="false" output="screen" args="/dev/ttyACM0"/>
+	<node name="rosserial_gripper" pkg="rosserial_python" type="serial_node.py" respawn="false" output="screen" args="/dev/ttyACM1"/>
 
 
 </launch>
