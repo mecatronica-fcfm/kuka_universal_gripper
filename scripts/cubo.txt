@@ -1,21 +1,21 @@
 #Rutina para agarrar y manipular cubo de madera
 
-#KH: kuka.home 
-#KV XX : kuka.set_vel(XX)
-#ptp [] :
-#open:  gripper.open
-#close:  griper.close
+#Instrucciones:
+#home:  kuka.home()
+#vel XX : kuka.set_vel(XX) define 
+#ptp[] : kuka.ptp([])
+#open:  gripper.open()
+#close:  griper.close()
 #sleep XX: rospy.sleep(XX)
 #fin: fin de la rutina
 
-
-KV 40
+vel 40
 
 ptp[1.583888014970185, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 sleep 2.0
 
-KV 10
+vel 10
 
 sleep 3.0
 
