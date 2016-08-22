@@ -30,8 +30,8 @@ def main():
 			rospy.sleep(3.0)
 
 		if orden[0:3]=="vel":
-			kuka.set_vel(int(orden[3:5]))
-			rospy.loginfo("Velocidad Kuka : " + orden[3:5])
+			kuka.set_vel(int(orden[3:6]))
+			rospy.loginfo("Velocidad Kuka : " + orden[3:6])
 			rospy.sleep(1.0)
 
 		if orden[0]=="#":
@@ -61,6 +61,8 @@ def main():
 
 	Rutina.close()
 	gripper.shutdown()
+	
+		
 
 if __name__ == '__main__': 
     try:

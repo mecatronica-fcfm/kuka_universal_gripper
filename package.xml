@@ -7,7 +7,7 @@
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="jose@todo.todo">jose</maintainer>
+  <maintainer email="jose@todo.todo">José</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -19,8 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/kuka_universal_gripper</url> -->
-
+  <url type="website">http://wiki.ros.org/kuka_universal_gripper</url> 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
   <!-- Authors do not have to be maintianers, but could be -->
@@ -42,6 +41,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
+  <build_depend>kuka_interface</build_depend>
   <run_depend>rospy</run_depend>
   <run_depend>std_msgs</run_depend>
 

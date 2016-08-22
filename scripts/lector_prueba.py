@@ -26,12 +26,12 @@ def main():
 
 		if orden=="home":
 			rospy.loginfo("kuka.home()")
-			rospy.sleep(3.0)
+			#rospy.sleep(3.0)
 
 		if orden[0:3]=="vel":
 			#kuka.set_vel(int(orden[3:5]))
-			rospy.loginfo("Velocidad Kuka : " + orden[3:5])
-			rospy.sleep(1.0)
+			rospy.loginfo("Velocidad Kuka : " + orden[3:6])
+			#rospy.sleep(1.0)
 
 		if orden[0]=="#":
 			pass
@@ -45,18 +45,21 @@ def main():
 			rospy.loginfo("Gripper Close")
 
 		if orden[0:5]=="sleep":
-			rospy.sleep(float(orden[6:(len(orden))]))
 			rospy.loginfo("sleep:"+ str(orden[6:(len(orden))]))
+			#rospy.sleep(float(orden[6:(len(orden))]))
 
 		if orden[0:3]=="ptp":
 			punto=map(float,orden[4:len(orden)-2].split( ','))
 			rospy.loginfo("kuka.ptp(punto)"+str(punto))
-			rospy.sleep(1.0)
+			#rospy.sleep(1.0)
 		else:
 			pass
 
 	Rutina.close()
 	gripper.shutdown()
+		
+		
+
 
 if __name__ == '__main__': 
     try:
